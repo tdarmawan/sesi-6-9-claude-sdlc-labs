@@ -1,0 +1,53 @@
+{
+  "disclaimer": "Synthetic training alerts, not an actual vendor scan or CVE advisory. No real secrets, CVEs or production systems.",
+  "alerts": [
+    {
+      "id": "SCN-001",
+      "path": "sesi-9/auth-vulnerable.mjs",
+      "line": 5,
+      "rule": "LAB-AUTH-01",
+      "message": "Ownership missing",
+      "fingerprint": "auth-owner"
+    },
+    {
+      "id": "SCN-002",
+      "path": "sesi-9/auth-vulnerable.mjs",
+      "line": 4,
+      "rule": "LAB-AUTH-02",
+      "message": "Potential object access bypass",
+      "fingerprint": "auth-owner"
+    },
+    {
+      "id": "SCN-003",
+      "path": "sesi-9/cors-vulnerable.mjs",
+      "line": 2,
+      "rule": "LAB-CORS-01",
+      "message": "Wildcard origin",
+      "fingerprint": "cors-origin"
+    },
+    {
+      "id": "SCN-004",
+      "path": "sesi-9/upload-vulnerable.mjs",
+      "line": 2,
+      "rule": "LAB-UPLOAD-01",
+      "message": "Client MIME trusted",
+      "fingerprint": "upload-type"
+    },
+    {
+      "id": "SCN-005",
+      "path": "package-lock.json",
+      "line": 1,
+      "rule": "SIM-DEP-001",
+      "message": "Illustrative dependency alert: no actual advisory supplied; verify package, version and reachability",
+      "fingerprint": "dep-unverified"
+    },
+    {
+      "id": "SCN-006",
+      "path": "sesi-9/lookup-safe.mjs",
+      "line": 2,
+      "rule": "LAB-SQL-01",
+      "message": "Candidate SQL injection; inspect binding",
+      "fingerprint": "sql-safe"
+    }
+  ]
+}
