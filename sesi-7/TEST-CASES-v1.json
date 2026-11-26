@@ -1,0 +1,195 @@
+[
+  {
+    "id": "TC-001",
+    "requirement": "RM-004",
+    "source": "BRD",
+    "type": "Positive",
+    "title": "Create new Active role",
+    "priority": "High",
+    "rationale": "Memastikan aturan akses atau alur simpan tidak dilanggar.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {
+      "name": "QA Reviewer",
+      "status": "Active"
+    },
+    "steps": [
+      "Klik Create New Role",
+      "Isi nama QA Reviewer dan pilih Active",
+      "Klik Submit, tunggu loading selesai"
+    ],
+    "expected": "Baris QA Reviewer tampil satu kali, status Active, pengguna 0; ID dibuat sistem.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-002",
+    "requirement": "RM-004",
+    "source": "BRD",
+    "type": "Negative",
+    "title": "Reject duplicate Active role",
+    "priority": "High",
+    "rationale": "Memastikan aturan akses atau alur simpan tidak dilanggar.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {
+      "name": "Staff",
+      "status": "Active"
+    },
+    "steps": [
+      "Klik Create New Role",
+      "Isi Staff dan pilih Active",
+      "Klik Submit"
+    ],
+    "expected": "Validasi nama tampil, Staff kedua tidak tersimpan; teks final pesan TBC.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-004",
+    "requirement": "RM-004",
+    "source": "BRD",
+    "type": "Positive",
+    "title": "Create Inactive role",
+    "priority": "Medium",
+    "rationale": "Memeriksa variasi penting atau konsistensi tampilan.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {
+      "name": "QA Archive",
+      "status": "Inactive"
+    },
+    "steps": [
+      "Klik Create New Role",
+      "Isi QA Archive dan pilih Inactive",
+      "Klik Submit"
+    ],
+    "expected": "Baris QA Archive tampil dengan status Inactive.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-005",
+    "requirement": "RM-004",
+    "source": "Demo D-01; mandatory produk TBC",
+    "type": "Demo",
+    "title": "Empty name feedback",
+    "priority": "Medium",
+    "rationale": "Memeriksa variasi penting atau konsistensi tampilan.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {
+      "name": "",
+      "status": "Active"
+    },
+    "steps": [
+      "Klik Create New Role",
+      "Biarkan nama kosong, pilih Active",
+      "Klik Submit"
+    ],
+    "expected": "Form tetap terbuka dan pesan wajib diisi terlihat.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-006",
+    "requirement": "RM-005",
+    "source": "BRD",
+    "type": "Negative",
+    "title": "View Only cannot create role",
+    "priority": "High",
+    "rationale": "Memastikan aturan akses atau alur simpan tidak dilanggar.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {
+      "access": "View Only"
+    },
+    "steps": [
+      "Buka Skenario latihan",
+      "Pilih Akses demo Roles = View Only"
+    ],
+    "expected": "Daftar tetap terlihat; tombol Create New Role disembunyikan.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-008",
+    "requirement": "RM-005",
+    "source": "BRD",
+    "type": "Positive",
+    "title": "Access Control submenu mapping",
+    "priority": "Low",
+    "rationale": "Memeriksa variasi penting atau konsistensi tampilan.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {},
+    "steps": [
+      "Klik Create New Role",
+      "Buka kelompok ACCESS CONTROL",
+      "Periksa MASTER MENU, ROLES, USERS dan opsi level"
+    ],
+    "expected": "Ketiga submenu tersedia; None, View Only, All Access dapat dipilih; default tetap TBC.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-009",
+    "requirement": "RM-004",
+    "source": "BRD",
+    "type": "Positive",
+    "title": "System Role ID read-only",
+    "priority": "Medium",
+    "rationale": "Memeriksa variasi penting atau konsistensi tampilan.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {},
+    "steps": [
+      "Klik Create New Role",
+      "Periksa Role ID sebelum simpan"
+    ],
+    "expected": "Role ID tidak dapat diketik; format ID produk tetap TBC.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-010",
+    "requirement": "RM-004",
+    "source": "BRD",
+    "type": "Clarification",
+    "title": "Case sensitivity of role name",
+    "priority": "Medium",
+    "rationale": "Memeriksa variasi penting atau konsistensi tampilan.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {
+      "name": "staff"
+    },
+    "steps": [
+      "Tanyakan kebijakan kapital kepada Product Owner"
+    ],
+    "expected": "Blocked: sensitivitas kapital belum diputuskan. Perilaku demo D-02 bukan acceptance criterion produk.",
+    "status": "Blocked"
+  },
+  {
+    "id": "TC-011",
+    "requirement": "RM-001",
+    "source": "BRD",
+    "type": "Positive",
+    "title": "Role navigation and list",
+    "priority": "High",
+    "rationale": "Memastikan aturan akses atau alur simpan tidak dilanggar.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {},
+    "steps": [
+      "Reload",
+      "Klik Roles"
+    ],
+    "expected": "Daftar Role terbuka pada akses All Access.",
+    "status": "Ready"
+  },
+  {
+    "id": "TC-012",
+    "requirement": "RM-004",
+    "source": "BRD",
+    "type": "Positive",
+    "title": "Cancel keeps list unchanged",
+    "priority": "Medium",
+    "rationale": "Memeriksa variasi penting atau konsistensi tampilan.",
+    "precondition": "Reload prototype; Staff Active dan Auditor Inactive tersedia; akses All Access kecuali disebut lain.",
+    "data": {
+      "name": "Unsaved"
+    },
+    "steps": [
+      "Klik Create New Role",
+      "Isi Unsaved",
+      "Klik Batal"
+    ],
+    "expected": "Kembali ke daftar; Unsaved tidak ditambahkan.",
+    "status": "Ready"
+  }
+]

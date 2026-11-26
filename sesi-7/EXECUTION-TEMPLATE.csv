@@ -1,0 +1,13 @@
+run_id,test_id,prototype,status,actual,evidence,tester,date
+,TC-001,checkpoint-01.html,NotRun,,,,
+,TC-002,checkpoint-01.html,NotRun,,,,
+,TC-003,checkpoint-01.html,NotRun,,,,
+,TC-004,checkpoint-01.html,NotRun,,,,
+,TC-005,checkpoint-01.html,NotRun,,,,
+,TC-006,checkpoint-01.html,NotRun,,,,
+,TC-007,checkpoint-01.html,NotRun,,,,
+,TC-008,checkpoint-01.html,NotRun,,,,
+,TC-009,checkpoint-01.html,NotRun,,,,
+,TC-010,checkpoint-01.html,NotRun,,,,
+,TC-011,checkpoint-01.html,NotRun,,,,
+,TC-012,checkpoint-01.html,NotRun,,,,
