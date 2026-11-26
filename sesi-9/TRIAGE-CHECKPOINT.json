@@ -1,0 +1,83 @@
+[
+  {
+    "id": "VA-001",
+    "sources": [
+      "SCN-001",
+      "SCN-002"
+    ],
+    "status": "Confirmed in lab",
+    "severity": "High",
+    "confidence": "High",
+    "exposure": "In-memory fixture only; potential API exposure if reused",
+    "impact": "Another owner record returned",
+    "evidence": "test/session9.test.mjs ownership mutation test",
+    "file": "sesi-9/auth-vulnerable.mjs",
+    "line": 5,
+    "owner": "Participant / API reviewer",
+    "fix": "auth-final.mjs"
+  },
+  {
+    "id": "VA-002",
+    "sources": [
+      "SCN-003"
+    ],
+    "status": "Confirmed config pattern",
+    "severity": "Medium",
+    "confidence": "High",
+    "exposure": "No HTTP deployment; wildcard alone does not prove sensitive cross-origin access",
+    "impact": "Unrestricted browser origin in hypothetical public response",
+    "evidence": "test/session9.test.mjs CORS decision test",
+    "file": "sesi-9/cors-vulnerable.mjs",
+    "line": 2,
+    "owner": "Participant / config reviewer",
+    "fix": "cors-final.mjs"
+  },
+  {
+    "id": "VA-003",
+    "sources": [
+      "SCN-004"
+    ],
+    "status": "Confirmed in lab",
+    "severity": "Medium",
+    "confidence": "High",
+    "exposure": "Metadata validator only; no upload endpoint or file write",
+    "impact": "Non-PNG bytes accepted by MIME-only fixture",
+    "evidence": "test/session9.test.mjs MIME spoofing test",
+    "file": "sesi-9/upload-vulnerable.mjs",
+    "line": 2,
+    "owner": "Participant / API reviewer",
+    "fix": "upload-final.mjs"
+  },
+  {
+    "id": "VA-004",
+    "sources": [
+      "SCN-005"
+    ],
+    "status": "Unverified",
+    "severity": "Review",
+    "confidence": "Low",
+    "exposure": "Dependency usage/advisory not supplied",
+    "impact": "Unknown; do not invent a CVE",
+    "evidence": "SCANNER-SIMULATED.json explicitly synthetic",
+    "file": "package-lock.json",
+    "line": 1,
+    "owner": "Participant / dependency reviewer",
+    "fix": "Verify real advisory + npm audit; retain unresolved"
+  },
+  {
+    "id": "VA-005",
+    "sources": [
+      "SCN-006"
+    ],
+    "status": "False positive in lab",
+    "severity": "None",
+    "confidence": "High",
+    "exposure": "SQL text uses placeholder and parameter array",
+    "impact": "No interpolation shown",
+    "evidence": "lookup-safe.mjs and parameter test",
+    "file": "sesi-9/lookup-safe.mjs",
+    "line": 2,
+    "owner": "Participant / analyst",
+    "fix": "None; document dismissal rationale"
+  }
+]

@@ -1,0 +1,4 @@
+requirement,scope,tests,gap
+RM-001,In scope,TC-011,
+RM-004,In scope,TC-001; TC-002; TC-003; TC-004; TC-005; TC-009; TC-010; TC-012,RM-004 capital/default/format TBC; RM-002/003/006/007 not assessed in this slice
+RM-005,In scope,TC-006; TC-007; TC-008,

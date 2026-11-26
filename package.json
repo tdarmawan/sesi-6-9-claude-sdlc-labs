@@ -1,0 +1,27 @@
+{
+  "name": "sesi-6-9-claude-sdlc-labs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "test:checkpoints": "node scripts/check-checkpoints.mjs",
+    "test:e2e": "playwright test",
+    "test:s6": "node --test test/session6.test.mjs",
+    "test:s7": "node --test test/session7.test.mjs",
+    "test:s8": "node --test test/session8.test.mjs",
+    "test:s9": "node --test test/session9.test.mjs"
+  },
+  "dependencies": {
+    "hono": "4.13.22",
+    "pngjs": "7.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1"
+  }
+}

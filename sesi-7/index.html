@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WebTM · Role Management</title><style>
+:root{font-family:system-ui,Segoe UI,sans-serif;color:#182c3e;background:#f2f6fa;font-size:16px}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.65}[hidden]{display:none!important}.shell{display:grid;grid-template-columns:224px 1fr;min-height:100vh}aside{background:#102c42;color:#d1e0ea;padding:32px 22px}.brand{font-size:23px;letter-spacing:1px;font-weight:750;color:white}.subbrand{font-size:12px;margin:6px 0 44px;color:#91b2c7}.nav-label{text-transform:uppercase;letter-spacing:1px;font-size:11px;margin-bottom:12px}.nav-item{background:#22445d;border-left:3px solid #58d8bc;border-radius:5px;padding:12px 14px;color:white;width:100%;text-align:left}.sidebar-note{font-size:12px;line-height:1.6;color:#91b2c7;margin-top:48px}main{padding:30px 44px;max-width:1400px;width:100%}.topline{display:flex;justify-content:space-between;gap:16px;color:#587084;font-size:13px;padding-bottom:24px;border-bottom:1px solid #dce5ec}.eyebrow{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#527486;font-weight:700;margin:30px 0 10px}h1{font-size:32px;letter-spacing:-.8px;margin:0}h2{font-size:18px;margin:0 0 18px}.description{color:#62798a;line-height:1.6;margin:10px 0 26px}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:28px 0 20px}.btn{border:1px solid #bdcdd8;background:white;color:#1e4258;border-radius:7px;padding:11px 18px;font-weight:650}.primary{background:#136c62;border-color:#136c62;color:white}.card{background:white;border:1px solid #dce5ec;border-radius:12px;padding:26px;margin:20px 0;box-shadow:0 3px 12px #17354c05}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:left;padding:16px;border-bottom:1px solid #e5edf2}th{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:#688091;background:#f8fafc}tbody tr:last-child td{border:0}.status{font-size:12px;font-weight:700;border-radius:18px;padding:6px 10px;display:inline-block}.active{color:#096755;background:#e5f5ef}.inactive{color:#6d6476;background:#f0edf4}.fields{display:grid;grid-template-columns:1fr 1fr;gap:24px}.field label,.field legend{display:block;font-size:14px;font-weight:650;margin-bottom:8px}.field input[type=text],.field select{padding:12px;border:1px solid #bdcdd8;border-radius:6px;width:100%;background:white}.field input:read-only{background:#f3f6f8;color:#667e8e}.field small,.hint{display:block;color:#6b7f8e;font-size:12px;line-height:1.5;margin-top:6px}fieldset{margin:0;border:0;padding:0}.radio-label{display:inline-flex!important;align-items:center;gap:6px;margin:7px 20px 0 0;font-weight:400!important}.error{color:#b32937;font-size:13px;margin-top:7px;line-height:1.5}.notice{background:#e9f6ef;color:#16593e;border-left:3px solid #4da879;padding:14px 18px;border-radius:6px;margin-top:18px}.tbc{font-size:12px;color:#80631a;background:#fff9e6;border:1px solid #eadca9;padding:14px 18px;border-radius:7px;line-height:1.65}.permission-group{border-top:1px solid #e2e9ee;padding:12px 0}.permission-group summary{font-size:13px;font-weight:750;cursor:pointer;padding:8px 0}.permission-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:7px 10px;font-size:13px}.permission-row select{padding:7px;border:1px solid #bdcdd8;border-radius:5px;background:white;min-width:170px}.actions{display:flex;justify-content:flex-end;gap:12px;margin-top:24px}.lab{font-size:13px;color:#62798a;line-height:1.65}.lab summary{cursor:pointer;font-weight:650}.lab-controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px}.lab-controls select{padding:6px}.stage{background:#fff4dc;padding:12px;border-radius:6px;margin:16px 0}.count{font-size:13px;color:#688091}.empty{text-align:center;padding:48px;color:#688091}a{color:#136c62}:focus-visible{outline:3px solid #db9d19;outline-offset:3px}@media(max-width:760px){.shell{grid-template-columns:1fr}aside{padding:18px 22px}.subbrand,.sidebar-note,.nav-label{display:none}.brand{display:inline-block;margin-right:22px}.nav-item{width:auto;display:inline-block;margin-top:12px}main{padding:22px 18px}.fields{grid-template-columns:1fr}.topline{font-size:12px}h1{font-size:26px}.permission-row{flex-wrap:wrap}.toolbar{align-items:flex-start}.card{padding:20px}}
+</style></head><body>
+<div class="shell"><aside><div class="brand">WebTM<span style="color:#58d8bc">.</span></div><div class="subbrand">WORKSPACE DEMO</div><div class="nav-label">Access Control</div><button id="roles-nav" class="nav-item" type="button">Roles</button><p class="sidebar-note">Prototype latihan<br>Data fiktif · tersimpan selama halaman terbuka.</p></aside>
+<main><div class="topline"><span>Access Control / Roles</span><span>Super admin · lingkungan latihan</span></div><p class="eyebrow">Role & User Management</p><div id="stage-note" class="stage" hidden></div>
+<div id="success" class="notice" role="status" hidden></div><div id="denied" class="card" role="status" hidden>Akses Roles tidak tersedia pada mode None. Ubah akses melalui Skenario latihan.</div>
+<!-- RM-001: daftar role; RM-002/003/007 ditunda ke latihan opsional, lihat NOTES.md. -->
+<section id="list-screen"><div class="toolbar"><div><h1>Role Management</h1><p class="description">Kelola role dan level akses untuk ruang kerja Anda.</p></div><button id="create-role" class="btn primary" type="button">Create New Role</button></div><div class="card"><div class="toolbar" style="margin-top:0"><h2 style="margin:0">Daftar Role</h2><span id="role-count" class="count"></span></div><div class="table-wrap"><table><thead><tr><th>Role ID</th><th>Role Name</th><th>Total User</th><th>Role Status</th></tr></thead><tbody id="role-rows"></tbody></table></div><div id="empty-state" class="empty" hidden>Belum ada role. Gunakan Create New Role untuk menambahkan role pertama.</div></div></section>
+<!-- RM-004: Create New Role. Atribut novalidate membuat pesan demo diuji melalui JavaScript. -->
+<form id="role-form" hidden novalidate><h1>Create New Role</h1><p class="description">Tentukan identitas dan akses role baru.</p><div class="card"><h2>Informasi Role</h2><div class="fields"><div class="field"><label for="role-id">Role ID</label><input id="role-id" type="text" readonly><small>RM-004 · Format ID produk belum diputuskan.</small></div><div class="field"><label for="role-name">Role Name</label><input id="role-name" type="text" autocomplete="off" aria-describedby="name-help name-error"><small id="name-help">Huruf, angka, spasi. Nama unik terhadap role Active dan Inactive.</small><div id="name-error" class="error" role="alert"></div></div><fieldset class="field"><legend>Role Status</legend><label class="radio-label"><input id="status-active" type="radio" name="status" value="Active">Active</label><label class="radio-label"><input id="status-inactive" type="radio" name="status" value="Inactive">Inactive</label><small>Default produk: TBC. Pilih status untuk simulasi ini.</small><div id="status-error" class="error" role="alert"></div></fieldset></div></div>
+<!-- RM-005 dan Appendix 8.1: daftar permission, tiga level akses. -->
+<div id="permission-card" class="card"><h2>Role Permission</h2><p class="hint">Pilih None, View Only, atau All Access. Default dan hubungan induk/submenu masih TBC.</p><div id="permissions"></div></div>
+<div class="tbc">TBC: format Role ID, teks pesan duplikat, default status/permission, mandatory field, sensitivitas kapital, dan detail setelah simpan. Keputusan demo diberi nomor di NOTES.md.</div><div id="submit-error" class="error" role="alert"></div><div class="actions"><button id="cancel" class="btn" type="button">Batal</button><button id="submit-role" class="btn primary" type="submit">Submit</button></div></form>
+<details class="lab card"><summary>Skenario latihan</summary><p>Kontrol ini khusus pengujian prototype, bukan bagian produk. Muat ulang mengembalikan data contoh. Penyimpanan dan akses hanya disimulasikan di browser.</p><div class="lab-controls"><label id="access-control">Akses demo Roles <select id="demo-access"><option>All Access</option><option>View Only</option><option>None</option></select></label><label><input id="demo-fail" type="checkbox">Gagalkan satu penyimpanan berikutnya</label><button id="demo-empty" type="button" class="btn">Coba daftar kosong</button><button id="demo-reset" type="button" class="btn">Reset data demo</button></div></details>
+</main></div><script id="webtm-domain">
+/* RM-004: aturan domain Create New Role; D-01..D-05 ada di NOTES.md. */
+globalThis.WebTMDomain = (() => {
+  const levels = ['None','View Only','All Access'];
+  const menus = {
+    'TRADEMARKETING':['DRAFT','INFORMASI PROMO','UPLOAD SB MANUAL','SET PIC SALES','TM REPORT'],
+    'APPROVAL':['DRAFT SB','REALIZATION'],
+    'SERVICES':['DAILY ACUMULATION','CLAIM STATUS','ANNOUNCE'],
+    'INQUIRY FBP/TM':['DMS SALES','TANGKAS SALES','NAV SALES','AUDIT GC DATA','REDEEM DIRECT'],
+    'SB MONITORING':['SALES BRIEF','SB SELL OUT','SB SELL IN','TCM CLAIM & REDEEM','NAV REDEEM','SYNC SALES BRIEF'],
+    'PROMO NOTIF':['WA REPORT','LOGGING HISTORY'],
+    'ACCESS CONTROL':['MASTER MENU','ROLES','USERS']
+  };
+  function validateRole(input, roles) {
+    const name=String(input.name??'').trim();
+    if(!name) return {field:'name',message:'Role Name wajib diisi. [Aturan latihan D-01]'};
+    // D-02: pencocokan tanpa beda kapital adalah keputusan demo, kebijakan produk TBC.
+    if(roles.some(r=>r.name.trim().toLowerCase()===name.toLowerCase()))
+      return {field:'name',message:'[Pesan validasi: TBC] Nama role sudah digunakan oleh role Active atau Inactive.'};
+    if(!/^[A-Za-z0-9 ]+$/.test(name))
+      return {field:'name',message:'Gunakan huruf, angka, dan spasi. [Interpretasi demo D-03]'};
+    if(!['Active','Inactive'].includes(input.status))
+      return {field:'status',message:'Pilih Role Status. Default dan mandatory produk: TBC. [D-04]'};
+    const values=Object.values(input.permissions??{});
+    if(values.some(v=>v!==''&&!levels.includes(v)))
+      return {field:'permissions',message:'Level akses tidak dikenal.'};
+    return null;
+  }
+  function nextId(roles) {
+    let n=roles.length+1;
+    while(roles.some(r=>r.id===`DEMO-${String(n).padStart(3,'0')}`)) n++;
+    return `DEMO-${String(n).padStart(3,'0')}`;
+  }
+  function createRole(input, roles, access='All Access') {
+    if(access!=='All Access') return {error:{field:'access',message:'Akses membuat role tidak tersedia.'}};
+    const error=validateRole(input,roles); if(error) return {error};
+    const role={id:nextId(roles),name:input.name.trim(),status:input.status,users:0,permissions:{...(input.permissions??{})}};
+    return {role,roles:[...roles,role]};
+  }
+  return {levels,menus,validateRole,nextId,createRole};
+})();
+</script><script id="webtm-ui">
+(() => {
+  const STAGE=3;
+  const D=globalThis.WebTMDomain;
+  const $=id=>document.getElementById(id);
+  let roles=[{id:'DEMO-001',name:'Staff',status:'Active',users:12,permissions:{}},{id:'DEMO-002',name:'Auditor',status:'Inactive',users:3,permissions:{}}];
+  let busy=false,access='All Access';
+  const form=$('role-form');
+  function renderList(){
+    $('role-rows').replaceChildren();
+    for(const r of roles){const tr=document.createElement('tr');
+      for(const v of [r.id,r.name,r.users]){const td=document.createElement('td');td.textContent=v;tr.append(td);}
+      const td=document.createElement('td'),badge=document.createElement('span');badge.textContent=r.status;badge.className='status '+r.status.toLowerCase();td.append(badge);tr.append(td);$('role-rows').append(tr);
+    }
+    $('role-count').textContent=roles.length+' role';
+    $('empty-state').hidden=roles.length!==0;
+  }
+  function showList(){if(busy)return;form.hidden=true;$('list-screen').hidden=false;$('denied').hidden=access!=='None';$('list-screen').hidden=access==='None';}
+  function clearErrors(){for(const id of ['name-error','status-error','submit-error'])$(id).textContent='';$('role-name').removeAttribute('aria-invalid');}
+  function applyAccess(){access=$('demo-access').value;$('create-role').hidden=access!=='All Access';$('roles-nav').hidden=access==='None';showList();}
+  function permissionInput(){
+    const result={};document.querySelectorAll('[data-permission]').forEach(el=>result[el.dataset.permission]=el.value);return result;
+  }
+  // RM-005 + Appendix 8.1: menu induk dan submenu masing-masing memiliki pilihan akses.
+  for(const [menu,children] of Object.entries(D.menus)){
+    const group=document.createElement('details');group.className='permission-group';group.open=menu==='ACCESS CONTROL';
+    const summary=document.createElement('summary');summary.textContent=menu;group.append(summary);
+    for(const key of [menu,...children.map(child=>menu+'/'+child)]){
+      const label=document.createElement('label');label.className='permission-row';const text=document.createElement('span');text.textContent=key===menu?'Akses menu induk':key.split('/')[1];
+      const select=document.createElement('select');select.dataset.permission=key;select.setAttribute('aria-label','Akses '+key);
+      for(const value of ['',...D.levels]){const o=document.createElement('option');o.value=value;o.textContent=value||'TBC — belum dipilih';select.append(o);}label.append(text,select);group.append(label);
+    }$('permissions').append(group);
+  }
+  $('create-role').addEventListener('click',()=>{
+    if(access!=='All Access')return;
+    form.reset();clearErrors();$('role-id').value='Dibuat sistem saat disimpan · format TBC';$('list-screen').hidden=true;form.hidden=false;$('success').hidden=true;$('role-name').focus();
+  });
+  $('cancel').addEventListener('click',showList);$('roles-nav').addEventListener('click',showList);
+  $('demo-access').addEventListener('change',applyAccess);
+  $('demo-empty').addEventListener('click',()=>{if(busy)return;roles=[];renderList();showList();});
+  $('demo-reset').addEventListener('click',()=>location.reload());
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();if(busy||STAGE===0)return;clearErrors();
+    const input={name:$('role-name').value,status:form.elements.status.value,permissions:permissionInput()};
+    const result=STAGE===1?{role:{id:D.nextId(roles),name:input.name.trim(),status:input.status||'Active',users:0,permissions:{}}}:D.createRole(input,roles,access);
+    if(result.error){const id=result.error.field==='status'?'status-error':result.error.field==='name'?'name-error':'submit-error';$(id).textContent=result.error.message;if(id==='name-error'){$('role-name').setAttribute('aria-invalid','true');$('role-name').focus();}return;}
+    busy=true;$('submit-role').disabled=true;$('cancel').disabled=true;$('demo-access').disabled=true;$('submit-role').textContent=STAGE>=2?'Menyimpan…':'Submit';form.setAttribute('aria-busy','true');
+    if(STAGE>=2)await new Promise(resolve=>setTimeout(resolve,900));
+    const fail=STAGE>=2&&$('demo-fail').checked;$('demo-fail').checked=false;
+    if(fail){$('submit-error').textContent='Simulasi: penyimpanan gagal. Data form tetap tersedia; silakan Submit kembali.';}
+    else{roles=[...roles,result.role];renderList();$('success').textContent='Role '+result.role.name+' berhasil ditambahkan.';$('success').hidden=false;}
+    busy=false;$('submit-role').disabled=false;$('cancel').disabled=false;$('demo-access').disabled=false;$('submit-role').textContent='Submit';form.removeAttribute('aria-busy');if(!fail)showList();
+  });
+  if(STAGE<3){$('permission-card').hidden=true;$('access-control').hidden=true;}
+  if(STAGE===0)$('submit-role').disabled=true;
+  if(STAGE<3){$('stage-note').hidden=false;$('stage-note').textContent=STAGE===0?'Starter: tampilan dan navigasi tersedia. Implementasikan penyimpanan sesuai PLAN.md.':STAGE===1?'Checkpoint 01: alur simpan tersedia; validasi, loading, dan permission belum selesai.':'Checkpoint 02: validasi dan state tersedia; lengkapi Role Permission pada tahap akhir.';}
+  renderList();
+})();
+</script></body></html>

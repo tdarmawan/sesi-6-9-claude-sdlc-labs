@@ -1,0 +1,9 @@
+UAT_ID,AC_ID,status,actual,evidence,tester,date
+UAT-001,AC-01,NotRun,,,,
+UAT-002,AC-02,NotRun,,,,
+UAT-003,AC-03,NotRun,,,,
+UAT-004,AC-04,NotRun,,,,
+UAT-005,AC-05,NotRun,,,,
+UAT-006,AC-01,NotRun,,,,
+UAT-007,AC-02,NotRun,,,,
+UAT-008,AC-02,NotRun,,,,

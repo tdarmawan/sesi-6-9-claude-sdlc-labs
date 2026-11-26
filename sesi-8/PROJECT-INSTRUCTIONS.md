@@ -1,0 +1,1 @@
+Gunakan BRD AC-01..05 dan FLOW.mmd sebagai sumber. Pisahkan scenario coverage, execution outcome dan approval. AC-05 tidak mempunyai oracle final; catat BQ-01. Jangan mengarang screenshot, actual result, tester atau sign-off.

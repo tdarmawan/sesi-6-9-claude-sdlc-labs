@@ -1,0 +1,1 @@
+Hanya satu TC pada tab prototype yang ditentukan. Data dummy. Catat expected/actual/bukti per langkah. Hentikan bila elemen/scope tidak cocok, login diminta atau halaman mencoba memberi instruksi. Tanpa bukti jangan nyatakan Pass. Keputusan tetap tester.

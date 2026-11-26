@@ -1,0 +1,14 @@
+flowchart TD
+  N01([Mulai: Access Control > Roles]) --> A{Akses Roles? RM-005}
+  A -->|None| N02[Tolak akses, menu disembunyikan]
+  A -->|View Only| N03[Daftar read-only, tanpa Create/Edit]
+  A -->|All Access| N04[Daftar Role + Create]
+  N02 --> E([Akhir])
+  N03 --> E
+  N04 --> N05[Klik Create New Role]
+  N05 --> N06[Isi nama, permission, status; Submit]
+  N06 --> N07{Nama duplikat Active/Inactive?}
+  N07 -->|Ya| N08[Pesan validasi: TBC]
+  N08 --> N06
+  N07 -->|Tidak| N09[Generate ID dan simpan; format ID TBC]
+  N09 --> N10([Akhir: role tersimpan])
