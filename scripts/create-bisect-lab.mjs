@@ -1,0 +1,12 @@
+import { mkdirSync,writeFileSync,existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
+const root=resolve('work/bisect-lab');if(existsSync(root))throw new Error('Folder work/bisect-lab sudah ada. Gunakan clone latihan baru agar history lama tetap tersimpan.');
+mkdirSync(root,{recursive:true});const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8'}).trim();
+git('init','-b','main');git('config','user.name','Lab Example');git('config','user.email','lab@example.invalid');
+const source=bad=>`export const visible = (rows,user) => rows.filter(r=>${bad?'true':'r.user===user'});\n`;
+const commit=(text,bad)=>{writeFileSync(resolve(root,'claims.mjs'),source(bad));writeFileSync(resolve(root,'NOTES.md'),text+'\n');git('add','.');git('commit','-m',text);return git('rev-parse','HEAD');};
+const good=commit('A: scope data per user',false);commit('B: clarify notes',false);const culprit=commit('C: regression ownership filter',true);commit('D: update notes',true);const bad=commit('E: reproduce report',true);
+const judge=resolve('work/bisect-judge.mjs');writeFileSync(judge,`import {pathToFileURL} from 'node:url'; import {resolve} from 'node:path'; const {visible}=await import(pathToFileURL(resolve('claims.mjs'))); const rows=[{user:'rina'},{user:'budi'}];process.exit(visible(rows,'rina').length===1?0:1);\n`);
+writeFileSync(resolve('work/bisect-answer.json'),JSON.stringify({good,bad,culprit,judge},null,2));
+console.log(`cd work/bisect-lab\ngit bisect start ${bad} ${good}\ngit bisect run node "${judge}"\ngit bisect reset\nExpected culprit: ${culprit}`);
