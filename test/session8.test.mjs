@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import vm from 'node:vm';
+const load=name=>{const html=readFileSync(new URL('../sesi-8/'+name,import.meta.url),'utf8');const c={};vm.createContext(c);vm.runInContext(html.match(/<script id="order-domain">([\s\S]*?)<\/script>/)[1],c);return c.OrderDomain;};const d=load('index.html');
+test('AC-01: inactive product cannot create order',()=>assert.ok(d.submit('P-002',3).error));
+test('AC-02: integer quantity 1..99; boundaries and fractions',()=>{for(const q of [1,99])assert.equal(d.validate('P-001',q),null);for(const q of [0,-1,1.5,100,NaN,Infinity])assert.ok(d.validate('P-001',q));});
+test('AC-03: total has no discount or hidden adjustment',()=>{assert.equal(d.total(100,3),300);assert.equal(d.total(100,99),9900);});
+test('AC-04: unique order ID, Submitted status and business total',()=>{const one=d.submit('P-001',3).order;const two=d.submit('P-001',2,[one]).order;assert.equal(one.total,300);assert.equal(one.status,'Submitted');assert.notEqual(one.id,two.id);});
+test('UAT checkpoint oracle detects total and status bugs',()=>{const b=load('checkpoint-01.html');assert.equal(b.total(100,3),250);assert.equal(b.submit('P-001',3).order.status,'Draft');assert.notEqual(b.total(100,3),d.total(100,3));});
+test('AC-05 remains a business clarification; traceability covers all five criteria',()=>{const s=JSON.parse(readFileSync(new URL('../sesi-8/SCENARIOS-v2.json',import.meta.url)));assert.equal(new Set(s.map(x=>x.ac)).size,5);assert.equal(s.find(x=>x.ac==='AC-05').status,'Blocked');});
