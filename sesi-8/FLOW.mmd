@@ -1,0 +1,8 @@
+flowchart TD
+A[Katalog Active] --> B[Pilih produk dan quantity]
+B --> C{Produk Active dan quantity integer 1..99?}
+C -- Tidak --> D[Validasi; tidak membuat order]
+C -- Ya --> E[Review unit price x quantity]
+E --> F[Submit]
+F --> G[Order unik berstatus Submitted]
+G --> H[BQ-01: kebijakan duplicate order belum ditetapkan]

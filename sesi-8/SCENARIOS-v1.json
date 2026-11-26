@@ -1,0 +1,114 @@
+[
+  {
+    "id": "UAT-001",
+    "ac": "AC-01",
+    "type": "Happy path",
+    "actor": "Business User",
+    "priority": "High",
+    "journey": "Catalog",
+    "steps": [
+      "Reload",
+      "Periksa katalog Active"
+    ],
+    "expected": "Widget Active tersedia; Legacy tidak ada pada katalog normal.",
+    "data": {},
+    "status": "Ready"
+  },
+  {
+    "id": "UAT-002",
+    "ac": "AC-02",
+    "type": "Exception",
+    "actor": "Business User",
+    "priority": "High",
+    "journey": "Quantity",
+    "steps": [
+      "Isi quantity 0",
+      "Submit Order"
+    ],
+    "expected": "Pesan validasi tampil; order tidak dibuat.",
+    "data": {
+      "quantity": 0
+    },
+    "status": "Ready"
+  },
+  {
+    "id": "UAT-003",
+    "ac": "AC-03",
+    "type": "Happy path",
+    "actor": "Business User",
+    "priority": "High",
+    "journey": "Review total",
+    "steps": [
+      "Pilih Widget harga 100",
+      "Isi quantity 3",
+      "Periksa total sebelum Submit"
+    ],
+    "expected": "Order total = 300.",
+    "data": {
+      "product": "P-001",
+      "quantity": 3
+    },
+    "status": "Ready"
+  },
+  {
+    "id": "UAT-004",
+    "ac": "AC-04",
+    "type": "Happy path",
+    "actor": "Business User",
+    "priority": "High",
+    "journey": "Submit",
+    "steps": [
+      "Pilih Widget, quantity 3",
+      "Submit Order",
+      "Periksa Orders"
+    ],
+    "expected": "Satu order unik berstatus Submitted, quantity 3, total 300.",
+    "data": {
+      "product": "P-001",
+      "quantity": 3
+    },
+    "status": "Ready"
+  },
+  {
+    "id": "UAT-007",
+    "ac": "AC-02",
+    "type": "Alternative",
+    "actor": "Business User",
+    "priority": "Medium",
+    "journey": "Edit quantity",
+    "steps": [
+      "Isi quantity 2",
+      "Ubah menjadi 3 sebelum Submit"
+    ],
+    "expected": "Quantity terakhir 3 dan total 300.",
+    "data": {
+      "quantity": 3
+    },
+    "status": "Ready"
+  },
+  {
+    "id": "UAT-008",
+    "ac": "AC-02",
+    "type": "Boundary",
+    "actor": "Business User",
+    "priority": "Medium",
+    "journey": "Quantity bounds",
+    "steps": [
+      "Uji 1 dan 99 secara terpisah",
+      "Uji -1, 1.5, 100 secara terpisah"
+    ],
+    "expected": "1 dan 99 valid; -1, 1.5 dan 100 ditolak.",
+    "data": {
+      "valid": [
+        1,
+        99
+      ],
+      "invalid": [
+        -1,
+        1.5,
+        100
+      ]
+    },
+    "status": "Ready"
+  }
+]

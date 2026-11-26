@@ -1,0 +1,6 @@
+AC_ID,scenarios,state
+AC-01,UAT-001; UAT-006,Mapped; not yet executed
+AC-02,UAT-002; UAT-007; UAT-008,Mapped; not yet executed
+AC-03,UAT-003,Mapped; not yet executed
+AC-04,UAT-004,Mapped; not yet executed
+AC-05,UAT-005,Clarification BQ-01
